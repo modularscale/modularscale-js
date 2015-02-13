@@ -4,22 +4,26 @@ var msRatios = (1+ Math.sqrt(5))/2;
 
 // Unique via http://jsfiddle.net/gabrieleromanato/BrLfv/
 var msUnique = function(origArr) {
-    var newArr = [],
-        origLen = origArr.length,
-        found, x, y;
 
-    for (x = 0; x < origLen; x++) {
-        found = undefined;
-        for (y = 0; y < newArr.length; y++) {
-            if (origArr[x] === newArr[y]) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            newArr.push(origArr[x]);
-        }
+    origArr = origArr.sort(function(a,b) {
+      var x = a[0];
+      var y = b[0];
+      return x-y;
+    });
+
+    newArr = [];
+    var lastVal = null;
+
+    for (var i = 0; i < origArr.length; i++) {
+      var currentVal = origArr[i][0];
+      if (currentVal != lastVal) {
+        newArr.push(origArr[i]);
+      };
+
+      lastVal = currentVal;
+
     }
+
     return newArr;
 }
 
@@ -53,9 +57,12 @@ function ms(value, bases, ratios) {
 
   // Seed return array
   var r = [];
+  var strand = null;
 
   for (var ratio = 0; ratio < ratios.length; ratio++) {
     for (var base = 0; base < bases.length; base++) {
+
+      strand = (base + ratio);
 
       // Seed list with an initial value
       // r.push(bases[base]);
@@ -65,21 +72,21 @@ function ms(value, bases, ratios) {
         // Find lower values on the scale
         var i = 0;
         while((Math.pow(ratios[ratio], i) * bases[base]) >= bases[0]) {
-          r.push(Math.pow(ratios[ratio], i) * bases[base]);
+          r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
           i--;
         }
 
         // Find higher possible values on the scale
         var i = 0;
         while(Math.pow(ratios[ratio], i) * bases[base] <= Math.pow(ratios[ratio], value + 1) * bases[base]) {
-          r.push(Math.pow(ratios[ratio], i) * bases[base]);
+          r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
           i++;
         }
       } else {
         // Find values on a negitve scale
         var i = 0;
         while((Math.pow(ratios[ratio], i) * bases[base]) <= bases[0]) {
-          r.push(Math.pow(ratios[ratio], i) * bases[base]);
+          r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
           i++;
         }
 
@@ -87,7 +94,7 @@ function ms(value, bases, ratios) {
         var i = 0;
         while((Math.pow(ratios[ratio], i) * bases[base]) >= (Math.pow(ratios[ratio], value - 1) * bases[base])) {
           if (Math.pow(ratios[ratio], i) * bases[base] <= bases[0]) {
-            r.push(Math.pow(ratios[ratio], i) * bases[base]);
+            r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
           }
           i--;
         }
@@ -95,7 +102,7 @@ function ms(value, bases, ratios) {
     }
   }
 
-  r = msUnique(r.sort(function(a,b) { return a - b;}));
+  r = msUnique(r);
 
   // reverse array if value is negitive
   if(value < 0) {
