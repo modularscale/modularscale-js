@@ -4,7 +4,15 @@ This is a JavaScript modular scale calculator so you can create and use modular 
 
 ### Installation
 
-You can install modularscale-js as a bower package to include in your project.
+You can install modularscale-js as an NPM or Bower package to include in your project.
+
+*NPM:*
+
+```
+$ npm install modularscale-js
+```
+
+*Bower:*
 
 ```
 $ bower install modularscale-js

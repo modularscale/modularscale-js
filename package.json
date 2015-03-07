@@ -1,0 +1,16 @@
+{
+  "name": "modularscale-js",
+  "version": "0.0.1",
+  "description": "A modular scale calculator written in JavaScript",
+  "homepage": "http://www.modularscale.com/",
+  "bugs": {
+    "url": "https://github.com/modularscale/modularscale-js/issues"
+  },
+  "license": "MIT",
+  "author": "Scott Kellum (http://scottkellum.com/)",
+  "main": "modularscale.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modularscale/modularscale-js.git"
+  }
+}
