@@ -2,6 +2,26 @@ var msValue = 0;
 var msBases = 1;
 var msRatios = (1+ Math.sqrt(5))/2;
 
+// Values
+var minorSecond   = 1.067;
+var majorSecond   = 1.125;
+var minorThird    = 1.2;
+var majorThird    = 1.25;
+var perfectFourth = 1.333;
+var aug.Fourth    = 1.414;
+var perfectFifth  = 1.5;
+var minorSixth    = 1.6;
+var goldenSection = 1.618;
+var majorSixth    = 1.667;
+var minorSeventh  = 1.778;
+var majorSeventh  = 1.875;
+var octave        = 2;
+var majorTenth    = 2.5;
+var majorEleventh = 2.667;
+var majorTwelfth  = 3;
+var doubleOctave  = 4;
+
+
 // Unique via http://jsfiddle.net/gabrieleromanato/BrLfv/
 var msUnique = function(origArr) {
 
