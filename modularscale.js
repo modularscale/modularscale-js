@@ -109,5 +109,5 @@ function ms(value, bases, ratios) {
     r = r.reverse();
   }
 
-  return r[Math.abs(value)];
+  return r[Math.abs(value)][0];
 }
