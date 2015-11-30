@@ -1,7 +1,3 @@
-var msValue = 0;
-var msBases = 1;
-var msRatios = (1+ Math.sqrt(5))/2;
-
 // Values
 var minorSecond   = 1.067;
 var majorSecond   = 1.125;
@@ -21,113 +17,63 @@ var majorEleventh = 2.667;
 var majorTwelfth  = 3;
 var doubleOctave  = 4;
 
+console.log(msFunction(22));
 
-// Unique via http://jsfiddle.net/gabrieleromanato/BrLfv/
-var msUnique = function(origArr) {
+// Function
+function msFunction(v, base, ratio) {
+  return v;
+};
 
-    origArr = origArr.sort(function(a,b) {
-      var x = a[0];
-      var y = b[0];
-      return x-y;
-    });
+// @function ms-function($v: 0, $base: false, $ratio: false, $thread: false, $settings: $modularscale) {
 
-    newArr = [];
-    var lastVal = null;
+//   // Parse settings
+//   $ms-settings: ms-settings($base,$ratio,$thread,$settings);
+//   $base: nth($ms-settings, 1);
+//   $ratio: nth($ms-settings, 2);
 
-    for (var i = 0; i < origArr.length; i++) {
-      var currentVal = origArr[i][0];
-      if (currentVal != lastVal) {
-        newArr.push(origArr[i]);
-      };
+//   // Render target values from settings.
+//   @if unit($ratio) != '' {
+//     $ratio: ms-target($ratio,$base)
+//   }
 
-      lastVal = currentVal;
+//   // Fast calc if not multi stranded
+//   @if(length($base) == 1) {
+//     @return ms-round-px(pow($ratio, $v) * $base);
+//   }
 
-    }
+//   // Create new base array
+//   $ms-bases: nth($base,1);
 
-    return newArr;
-}
+//   // Normalize base values
+//   @for $i from 2 through length($base) {
+//     // initial base value
+//     $ms-base: nth($base,$i);
+//     // If the base is bigger than the main base
+//     @if($ms-base > nth($base,1)) {
+//       // divide the value until it aligns with main base.
+//       @while($ms-base > nth($base,1)) {
+//         $ms-base: $ms-base / $ratio;
+//       }
+//       $ms-base: $ms-base * $ratio;
+//     }
+//     // If the base is smaller than the main base.
+//     @elseif ($ms-base < nth($base,1)) {
+//       // pump up the value until it aligns with main base.
+//       @while $ms-base < nth($base,1) {
+//         $ms-base: $ms-base * $ratio;
+//       }
+//     }
+//     // Push into new array
+//     $ms-bases: append($ms-bases,$ms-base);
+//   }
 
-// Main function
-function ms(value, bases, ratios) {
+//   // Sort array from smallest to largest.
+//   $ms-bases: ms-sort($ms-bases);
 
-  if (typeof value === 'string') {
-    value = 1;
-  }
-  if (value == undefined) {
-    value = msValue;
-  }
-  if (bases == undefined) {
-    bases = msBases;
-  }
-  if (ratios == undefined) {
-    ratios = msRatios;
-  }
+//   // Find step to use in calculation
+//   $vtep: floor($v / length($ms-bases));
+//   // Find base to use in calculation
+//   $ms-base: round(($v / length($ms-bases) - $vtep) * length($ms-bases)) + 1;
 
-  // Error hangling
-  if (bases <= 0) {
-    bases = 1;
-  }
-  if (typeof Math.abs(bases[0]) != 'number') {
-    bases = 1;
-  }
-
-  // Make arrays
-  var bases = (''+bases).split(',');
-  var ratios = (''+ratios).split(',');
-
-  // Seed return array
-  var r = [];
-  var strand = null;
-
-  for (var ratio = 0; ratio < ratios.length; ratio++) {
-    for (var base = 0; base < bases.length; base++) {
-
-      strand = (base + ratio);
-
-      // Seed list with an initial value
-      // r.push(bases[base]);
-
-      // Find values on a positive scale
-      if (value >= 0) {
-        // Find lower values on the scale
-        var i = 0;
-        while((Math.pow(ratios[ratio], i) * bases[base]) >= bases[0]) {
-          r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
-          i--;
-        }
-
-        // Find higher possible values on the scale
-        var i = 0;
-        while(Math.pow(ratios[ratio], i) * bases[base] <= Math.pow(ratios[ratio], value + 1) * bases[base]) {
-          r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
-          i++;
-        }
-      } else {
-        // Find values on a negitve scale
-        var i = 0;
-        while((Math.pow(ratios[ratio], i) * bases[base]) <= bases[0]) {
-          r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
-          i++;
-        }
-
-        // // Find higher possible values on the scale
-        var i = 0;
-        while((Math.pow(ratios[ratio], i) * bases[base]) >= (Math.pow(ratios[ratio], value - 1) * bases[base])) {
-          if (Math.pow(ratios[ratio], i) * bases[base] <= bases[0]) {
-            r.push([Math.pow(ratios[ratio], i) * bases[base], strand]);
-          }
-          i--;
-        }
-      }
-    }
-  }
-
-  r = msUnique(r);
-
-  // reverse array if value is negitive
-  if(value < 0) {
-    r = r.reverse();
-  }
-
-  return r[Math.abs(value)][0];
-}
+//   @return ms-round-px(pow($ratio, $vtep) * nth($ms-bases,$ms-base));
+// }
