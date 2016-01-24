@@ -63,7 +63,7 @@ function msFunction(v,settings) {
   // Sort bases
   base.sort();
 
-  // Figure out what base to use
+  // Figure out what base to use with modulo
   var rBase = Math.round((v / base.length - Math.floor(v/base.length)) * base.length);
 
   // Return
