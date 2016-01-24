@@ -21,9 +21,6 @@ var doubleOctave  = 4;
 var modularscale = {
   base: 16,
   ratio: 1.5,
-  med: {
-    ratio: 1.3
-  }
 };
 
 // Function
@@ -72,3 +69,7 @@ function msFunction(v,settings) {
   // Return
   return Math.pow(ratio,Math.floor(v/base.length)) * base[rBase];
 };
+
+function ms(v,settings) {
+  return msFunction(v,settings);
+}
