@@ -52,11 +52,11 @@ function msFunction(v,settings) {
   var baseHigh = Math.pow(ratio,1) * base[0];
   for (var i = 1; i < base.length; i++) {
     // shift up if value too low
-    while (base[i] < base[0]) {
+    while (base[i]/1 < base[0]/1) {
       base[i] = Math.pow(ratio,1) * base[i];
     }
     // Shift down if too high
-    while (base[i] >= baseHigh) {
+    while (base[i]/1 >= baseHigh/1) {
       base[i] = Math.pow(ratio,-1) * base[i];
     }
   }
