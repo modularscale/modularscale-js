@@ -24,14 +24,25 @@ Alternatively you can download the [latest release](https://github.com/modularsc
 
 First, you will want to set up your scale. You can go to [modularscale.com](http://modularscale.com) and click on the `js` tab to generate a config, or define it yourself.
 
-There are two variables that need to be redefined by you, `msBases` is an array of a base, or multiple base values. `msRatios` holds the ratios that your bases will be multiplied by to create your scale.
+There is a configuration object that contains the settings for modular scale, inside it is an array of bases and the ratio value.
+
+Call the function with either `msFunction(n)` or `ms(n)` where `n` is the point on your scale. You can pass settings in as a second variable.
 
 ```js
-msBases = [1];
-msRatios = [1.5];
+$modularscale: {
+  base: [1],
+  ratio: 1.5
+};
 ```
 
-Now you can use the function `ms()` throughout your project. Pass a number into this function to get the value for that position on the scale. For example, `ms(5)` with the above configuration will return the result `7.594`.
+You can add multiple bases by adding values to the array
+
+```js
+$modularscale: {
+  base: [12,14,16],
+  ratio: 1.5
+};
+```
 
 ## Ratios
 
@@ -66,14 +77,27 @@ By default, the variable `msRatios` is set to `1.618`.
 Add your own ratio by setting a variable.
 
 ```js
-msRatios = [1.234];
+$modularscale: {
+  ratio: 1.234
+};
 ```
 
-You can also pass more than one ratio
+## Multiple threads
+
+You may notice you can have multiple scales at once on modularscale.com formatted like this:
 
 ```js
-msRatios = [1.234, augFourth];
+$modularscale: {
+  base: [1],
+  ratio: 1.5,
+  a: {
+    base: [1],
+    ratio: 1.2
+  }
+};
 ```
+
+To use a scale with the `$modularscale.a` settings pass the settings in `msFunction(n,$modularscale.a)` where `n` is the point on the scale you wish to find a value for. You can break this variable down and pass it through via its own object but it is consolodated in the output of modularscale.com.
 
 ### Licence
 
