@@ -1,6 +1,6 @@
 {
   "name": "modularscale-js",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A modular scale calculator written in JavaScript",
   "homepage": "http://www.modularscale.com/",
   "bugs": {

@@ -73,3 +73,5 @@ function msFunction(v,settings) {
 function ms(v,settings) {
   return msFunction(v,settings);
 }
+
+module.exports = ms;
