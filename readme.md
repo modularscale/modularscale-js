@@ -22,7 +22,7 @@ Alternatively you can download the [latest release](https://github.com/modularsc
 
 ### Using modularscale-js
 
-First, you will want to set up your scale. You can go to [modularscale.com](http://modularscale.com) and click on the `js` tab to generate a config, or define it yourself.
+First, you will want to set up your scale. You can go to [modularscale.com](http://www.modularscale.com) and click on the `js` tab to generate a config, or define it yourself.
 
 There is a configuration object that contains the settings for modular scale, inside it is an array of bases and the ratio value.
 
