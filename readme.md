@@ -1,6 +1,6 @@
 # Modularscale
 
-This is a JavaScript modular scale calculator so you can create and use modular scales in your project. This calculator was built in tandem with the new [modularscale.com](http://modularscale.com/) website both as its calculation engine and as an external tool you can use in your own projects.
+This is a JavaScript modular scale calculator so you can create and use modular scales in your project. This calculator was built in tandem with the new [modularscale.com](http://www.modularscale.com/) website both as its calculation engine and as an external tool you can use in your own projects.
 
 ### Installation
 
