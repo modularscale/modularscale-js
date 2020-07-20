@@ -48,7 +48,7 @@ $modularscale: {
 
 Modular scale includes functions for a number of classic design and musical scale ratios. You can add your own ratios as well.
 
-By default, the variable `msRatios` is set to `1.618`.
+By default, the ratio is set to `1.5` (fifth).
 
 <table>
 
